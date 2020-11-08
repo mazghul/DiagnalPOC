@@ -13,6 +13,9 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mazghul.diagnal.R
 import com.mazghul.diagnal.data.model.Content
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -26,6 +29,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        AppCenter.start(
+            application, "9ad16882-3011-4af7-8092-d7d224f0484f",
+            Analytics::class.java, Crashes::class.java
+        )
         movieGridViewModel = ViewModelProvider(this).get(MovieGridViewModel::class.java)
         movieGridViewModel.initApplication(application)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)

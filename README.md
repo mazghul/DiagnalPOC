@@ -15,3 +15,9 @@
 ### Known Issues:
 
 - Searchview is not full width
+
+## Future enhancement
+
+- Implement Dagger / Koin for data injection.
+- Use webservices instead of reading from json file.
+- Fix bugs, increase usability.
