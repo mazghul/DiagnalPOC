@@ -2,75 +2,44 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MovieList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/MovieList"
     tools:context=".presentation.MainActivity">
 
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/toolBar"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="82dp"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:background="@drawable/nav_bar"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        android:elevation="10dp">-->
-
-    <!--        <ImageView-->
-    <!--            android:layout_width="30dp"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:src="@drawable/back"-->
-    <!--            android:paddingStart="15dp">-->
-
-    <!--        </ImageView>-->
-
-    <!--        <SearchView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent" />-->
-
-    <!--    </LinearLayout>-->
-<!--    <androidx.appcompat.widget.Toolbar-->
-<!--        android:id="@+id/toolbar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="82dp"-->
-<!--        android:background="@drawable/nav_bar"-->
-<!--        android:minHeight="?attr/actionBarSize"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <androidx.appcompat.widget.Toolbar-->
-<!--        android:id="@+id/toolbar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@drawable/toolbar_bg_gradient"-->
-<!--        android:minHeight="?attr/actionBarSize"-->
-<!--        app:titleTextColor="@android:color/white"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-
-    <GridView
-        android:id="@+id/movie_grid_view"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:horizontalSpacing="15dp"
-        android:numColumns="3"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:verticalSpacing="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/nav_bar"
+        android:elevation="100dp"
+        android:theme="@style/ToolbarTheme"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/movie_grid_view1"
+        android:id="@+id/movie_grid_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/no_results"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/titillium_web_light"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:gravity="center"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

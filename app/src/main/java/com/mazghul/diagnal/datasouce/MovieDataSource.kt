@@ -1,21 +1,26 @@
-package com.mazghul.diagnal.data.model
+package com.mazghul.diagnal.datasouce
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.paging.PageKeyedDataSource
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.mazghul.diagnal.data.model.Content
+import com.mazghul.diagnal.data.model.MovieResponse
+import com.mazghul.diagnal.presentation.MovieGridViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.util.*
 
-class MovieDataSource(private val scope: CoroutineScope, private val context: Context, private val query:String = "") :
+class MovieDataSource(
+    private val scope: CoroutineScope,
+    private val context: Context,
+    private val query: String = "",
+    private val movieGridViewModel: MovieGridViewModel
+) :
     PageKeyedDataSource<Int, Content>() {
-
-    //private val apiService = ApiClient.getClient().create(ApiService::class.java)
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
@@ -23,20 +28,22 @@ class MovieDataSource(private val scope: CoroutineScope, private val context: Co
     ) {
         scope.launch {
             try {
-                val response = getWorkoutFromFile(context,1)
-                //Toast.makeText(context, response.page.pageNum, Toast.LENGTH_SHORT).show()
+                val response = getWorkoutFromFile(context, 1)
                 var resultMovies = response.page.contentItems.content
-                if(query != "") {
+                if (query != "") {
                     resultMovies = resultMovies.filter { it1 ->
                         it1.name.toLowerCase(
                             Locale.ROOT
                         ).startsWith(query.toLowerCase(Locale.ROOT))
                     }
                 }
+                val contentCount = resultMovies.size
+                movieGridViewModel.setContentDetails(response.page.title, contentCount)
                 callback.onResult(resultMovies, null, 2)
 
             } catch (exception: Exception) {
-                Log.e("PostsDataSource", "Failed to fetch data!")
+                movieGridViewModel.setContentDetails("", 0)
+                Log.e("ContentDataSource", "Failed to fetch data!")
             }
 
         }
@@ -47,9 +54,8 @@ class MovieDataSource(private val scope: CoroutineScope, private val context: Co
         scope.launch {
             try {
                 val response = getWorkoutFromFile(context, params.key)
-                //apiService.fetchPosts(loadSize = params.requestedLoadSize, after = params.key)
                 var resultMovies = response.page.contentItems.content
-                if(query != "") {
+                if (query != "") {
                     resultMovies = resultMovies.filter { it1 ->
                         it1.name.toLowerCase(
                             Locale.ROOT
@@ -59,7 +65,7 @@ class MovieDataSource(private val scope: CoroutineScope, private val context: Co
                 callback.onResult(resultMovies, params.key + 1)
 
             } catch (exception: Exception) {
-                Log.e("PostsDataSource", "Failed to fetch data!")
+                Log.e("ContentDataSource", "Failed to fetch data!")
             }
         }
 
@@ -75,17 +81,10 @@ class MovieDataSource(private val scope: CoroutineScope, private val context: Co
     }
 
     private fun getWorkoutFromFile(context: Context, page: Int): MovieResponse {
-        Log.d("LoadingJson", "CONTENTLISTINGPAGE-PAGE${page}.json")
-        var pageNew: Int = page
-            //if(page == 1) 1 else 2
         val jsonFileString =
-            "CONTENTLISTINGPAGE-PAGE${pageNew}.json".getJsonDataFromAsset(context)
-
-        Toast.makeText(context, "CONTENTLISTINGPAGE-PAGE${pageNew}.json", Toast.LENGTH_SHORT).show()
-
+            "CONTENTLISTINGPAGE-PAGE${page}.json".getJsonDataFromAsset(context)
         val gson = Gson()
         val workoutData = object : TypeToken<MovieResponse>() {}.type
-
         return gson.fromJson(jsonFileString, workoutData)
     }
 
