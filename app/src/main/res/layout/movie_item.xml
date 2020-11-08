@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="left"
+    android:gravity="start"
     android:orientation="vertical"
     android:theme="@style/MovieList"
     >
@@ -19,8 +19,10 @@
         android:id="@+id/movie_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="left"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/titillium_web_light"
+        android:gravity="start"
         android:maxLines="1"
         android:text="French Fries"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 </LinearLayout>
