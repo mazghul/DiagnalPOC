@@ -4,15 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    style="@style/MovieList"
+    tools:context=".presentation.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/toolBar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="82dp"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        android:background="@drawable/nav_bar"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        android:elevation="10dp">-->
+
+    <!--        <ImageView-->
+    <!--            android:layout_width="30dp"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:src="@drawable/back"-->
+    <!--            android:paddingStart="15dp">-->
+
+    <!--        </ImageView>-->
+
+    <!--        <SearchView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent" />-->
+
+    <!--    </LinearLayout>-->
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="82dp"-->
+<!--        android:background="@drawable/nav_bar"-->
+<!--        android:minHeight="?attr/actionBarSize"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/toolbar_bg_gradient"-->
+<!--        android:minHeight="?attr/actionBarSize"-->
+<!--        app:titleTextColor="@android:color/white"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+
+    <GridView
+        android:id="@+id/movie_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="15dp"
+        android:numColumns="3"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:verticalSpacing="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/movie_grid_view1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="15dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:verticalSpacing="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

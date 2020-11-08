@@ -1,4 +1,4 @@
-package com.mazghul.mvvmboilerplate
+package com.mazghul.diagnal
 
 import org.junit.Test
 
